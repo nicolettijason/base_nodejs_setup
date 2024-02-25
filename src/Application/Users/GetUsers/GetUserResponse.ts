@@ -1,7 +1,6 @@
 /**
  * @typedef {object} GetUsersResponse
- * @property {boolean} success.required - success
- * @property {string} message - message
+ * @property {boolean} success - success
  * @property {number} statusCode - statusCode
  * @property {GetUser[]} result - result
  */

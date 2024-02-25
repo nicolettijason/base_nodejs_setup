@@ -20,6 +20,7 @@ const options = {
 	filesPattern: [
 		"./controllers/*.ts",
 		"../Application/**/**/*.ts",
+		"../Application/**/**/**/*.ts",
 		"../models/interfaces/*.ts",
 	],
 	// URL where SwaggerUI will be rendered

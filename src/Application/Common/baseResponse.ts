@@ -11,18 +11,18 @@ import { StatusCodes } from "http-status-codes";
 export class BaseResponse<TResponse = undefined> {
 	result?: TResponse;
 	success: boolean;
-	message?: string | string[];
+	error?: string | string[];
 	statusCode?: StatusCodes;
 
 	constructor(
 		success: boolean,
 		result?: TResponse,
-		message?: string | string[],
+		error?: string | string[],
 		statusCode?: StatusCodes
 	) {
 		this.success = success;
 		this.result = result;
-		this.message = message;
+		this.error = error;
 		this.statusCode = statusCode;
 	}
 }
@@ -44,16 +44,16 @@ export class SuccessReponse<TResponse> extends BaseResponse<TResponse> {
  * ErrorResponse
  * @typedef {object} ErrorResponse
  * @property {boolean} success.required - success
- * @property {oneOf|string|string[]} message - message
+ * @property {oneOf|string|string[]} error - error
  * @property {number} statusCode - statusCode
  */
 
 export class ErrorResponse extends BaseResponse {
 	success = false;
 	constructor(
-		public message: string | string[],
+		public error: string | string[],
 		public statusCode?: StatusCodes
 	) {
-		super(false, undefined, message, statusCode);
+		super(false, undefined, error, statusCode);
 	}
 }

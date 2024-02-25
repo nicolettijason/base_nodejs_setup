@@ -1,13 +1,14 @@
-import express from "express";
-import { CreateCategoryHandler } from "../../Application/Categories/CreateCategory/CreateCategoryHandler";
-import { CreateCategoryValidator } from "../../Application/Categories/CreateCategory/CreateCategoryValidator";
+import { Router } from "express";
+import { CreateCategoryHandler } from "../../Application/Categories/Commands/CreateCategory/CreateCategoryHandler";
+import { CreateCategoryRequestValidator } from "../../Application/Categories/Commands/CreateCategory/CreateCategoryRequestValidator";
+import { GetAllCategoriesHandler } from "../../Application/Categories/Queries/GetAllCategories/GetAllCategoriesHandler";
 
-export const categoryRouter = express.Router();
+export const categoryRouter = Router();
 
 /**
  * POST /api/categories
  * @tags Categories
- * @summary This is the summary of the endpoint
+ * @summary Create category
  * @param {CreateCategoryRequest} request.body.required - Create category request
  * @return {SuccessReponse} 201 - success response
  * @return {ErrorResponse} 400 - bad request
@@ -19,4 +20,12 @@ export const categoryRouter = express.Router();
  * }
  */
 
-categoryRouter.post("/", CreateCategoryValidator, CreateCategoryHandler);
+categoryRouter.post("/", CreateCategoryRequestValidator, CreateCategoryHandler);
+
+/**
+ * GET /api/categories
+ * @tags Categories
+ * @summary Get all categories
+ * @return {GetAllCategoriesResponse} 200 - success response
+ */
+categoryRouter.get("/", GetAllCategoriesHandler);

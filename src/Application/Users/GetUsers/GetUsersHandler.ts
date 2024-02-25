@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as context from "../../../Infrastructure/dbContext";
+import { context } from "../../../Infrastructure/dbContext";
 import { User } from "../../../models/Entities";
 import { StatusCodes } from "http-status-codes";
 import { BaseResponse, SuccessReponse } from "../../Common/BaseResponse";
@@ -9,11 +9,16 @@ export const GetUsersHandler = async (
 	_req: Request,
 	res: Response<BaseResponse<GetUserResponse[]>>
 ) => {
-	const query = await context.query<User>('SELECT * FROM "Users"', []);
+	const query = await context<User>("Users").select(
+		"Id",
+		"Email",
+		"FirstName",
+		"LastName"
+	);
 
 	return res.status(StatusCodes.OK).send(
 		new SuccessReponse(
-			query.rows.map((row) => ({
+			query.map((row) => ({
 				id: row.Id,
 				email: row.Email,
 				name: row.FirstName + " " + row.LastName,

@@ -1,12 +1,9 @@
-import { Pool, QueryResult, QueryResultRow } from "pg";
 import { BaseEntity } from "../models/Entities";
 import { envProperties } from "../helpers";
+import { knex } from "knex";
 
-const pool = new Pool({ connectionString: envProperties.CONNECTION_STRING });
-
-export const query = <TEntity extends QueryResultRow & BaseEntity>(
-	text: string,
-	params: (string | number | boolean | Date)[]
-) => {
-	return pool.query(text, params) as Promise<QueryResult<TEntity>>;
-};
+export const context = knex({
+	client: "pg",
+	connection: envProperties.CONNECTION_STRING,
+	searchPath: ["knex", "public"],
+});
