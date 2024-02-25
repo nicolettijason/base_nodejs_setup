@@ -1,4 +1,3 @@
-import { BaseEntity } from "../models/Entities";
 import { envProperties } from "../helpers";
 import { knex } from "knex";
 
