@@ -9,5 +9,6 @@ const knexContext = knex({
 	searchPath: ["knex", "public"],
 });
 
-export const context = <T extends BaseEntity>(table: DatabaseTable) =>
-	knexContext<T>(table);
+export const context = <T extends BaseEntity>(
+	table: keyof typeof DatabaseTable
+) => knexContext<T>(table);

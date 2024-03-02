@@ -14,11 +14,15 @@ export const JwtService = {
 		return jwt.sign(datas, envProperties.JWT_SECRET, { expiresIn: "1h" });
 	},
 	verifyToken: (
-		token: string,
+		token: string | undefined,
 		callback: (error: { message: string }) => void,
 		validator?: (datas: ITokenDatas) => boolean
 	) => {
 		try {
+			if (!token) {
+				callback({ message: "No token provided" });
+				return false;
+			}
 			const datas = jwt.verify(token, envProperties.JWT_SECRET) as ITokenDatas;
 			if (validator && !validator(datas)) {
 				return callback({ message: "Invalid token" });
