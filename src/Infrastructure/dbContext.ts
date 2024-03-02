@@ -1,8 +1,13 @@
 import { envProperties } from "../helpers";
 import { knex } from "knex";
+import { DatabaseTable } from "../models/Enums/DatabaseTable";
+import { BaseEntity } from "../models/Entities";
 
-export const context = knex({
+const knexContext = knex({
 	client: "pg",
 	connection: envProperties.CONNECTION_STRING,
 	searchPath: ["knex", "public"],
 });
+
+export const context = <T extends BaseEntity>(table: DatabaseTable) =>
+	knexContext<T>(table);

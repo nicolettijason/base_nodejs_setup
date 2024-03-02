@@ -8,19 +8,14 @@ const options = {
 		version: "1.0.0",
 		title: "API",
 	},
-	security: {
-		BasicAuth: {
-			type: "http",
-			scheme: "basic",
-		},
-	},
+
 	// Base directory which we use to locate your JSDOC files
 	baseDir: __dirname,
 	// Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
 	filesPattern: [
+		"./swagger.ts",
 		"./controllers/*.ts",
 		"../Application/**/**/*.ts",
-		"../Application/**/**/**/*.ts",
 		"../models/interfaces/*.ts",
 	],
 	// URL where SwaggerUI will be rendered

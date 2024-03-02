@@ -4,12 +4,13 @@ import { SuccessReponse } from "../../../Common/BaseResponse";
 import { Category } from "../../../../models/Entities/Category/category.interface";
 import { User } from "../../../../models/Entities";
 import { context } from "../../../../Infrastructure/dbContext";
+import { DatabaseTable } from "../../../../models/Enums/DatabaseTable";
 
 export const GetAllCategoriesHandler = async (
 	_req: Request,
 	res: Response<SuccessReponse<GetAllCategoriesResponse[]>>
 ) => {
-	const categories: (User & Category)[] = await context<Category>("Categories")
+	const categories: (User & Category)[] = await context<Category>(DatabaseTable.Categories)
 		.leftJoin<User>("Users", "Users.Id", "Categories.UserId")
 		.select(
 			"Categories.Id",

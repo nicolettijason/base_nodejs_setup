@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { context } from "../../../Infrastructure/dbContext";
-import { User } from "../../../models/Entities";
+import { context } from "../../../../Infrastructure/dbContext";
+import { User } from "../../../../models/Entities";
 import { StatusCodes } from "http-status-codes";
-import { BaseResponse, SuccessReponse } from "../../Common/BaseResponse";
-import { GetUserResponse } from "../GetUser/GetUserResponse";
+import { BaseResponse, SuccessReponse } from "../../../Common/BaseResponse";
+import { GetUsersResponse } from "./GetUserResponse";
 
 export const GetUsersHandler = async (
 	_req: Request,
-	res: Response<BaseResponse<GetUserResponse[]>>
+	res: Response<BaseResponse<GetUsersResponse[]>>
 ) => {
 	const query = await context<User>("Users").select(
 		"Id",

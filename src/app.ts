@@ -19,8 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
-app.use("/api", router);
 swagger(app);
+app.use("/api", router);
 
 app.listen(port, () => {
 	logServer(port);

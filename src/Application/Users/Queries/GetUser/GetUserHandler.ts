@@ -1,24 +1,29 @@
 import { Request, Response } from "express";
 import { GetUserResponse } from "./GetUserResponse";
-import { User } from "../../../models/Entities";
+import { User } from "../../../../models/Entities";
 import { GetUserRequest } from "./GetUserRequest";
 import { StatusCodes } from "http-status-codes";
 import {
 	BaseResponse,
 	ErrorResponse,
 	SuccessReponse,
-} from "../../Common/BaseResponse";
-import { errorMessages } from "../../../utils/constants/errorMessages";
-import { context } from "../../../Infrastructure/dbContext";
+} from "../../../Common/BaseResponse";
+import { context } from "../../../../Infrastructure/dbContext";
+import { contextExtensions } from "../../../../Infrastructure/contextExtensions";
+import { errorMessages } from "../../../../utils/constants/errorMessages";
+import { DatabaseTable } from "../../../../models/Enums/DatabaseTable";
 
 export const GetUserHandler = async (
 	req: Request<GetUserRequest>,
 	res: Response<BaseResponse<GetUserResponse>>
 ) => {
-	const user = await context<User>("Users")
-		.select("Id", "FirstName", "LastName", "Email")
-		.where("Id", req.params.id)
-		.first();
+	const user = await contextExtensions<User>(DatabaseTable.Users).getById(
+		req.params.id,
+		"Id",
+		"FirstName",
+		"LastName",
+		"Email"
+	);
 
 	if (!user) {
 		return res

@@ -29,7 +29,7 @@ export class BaseResponse<TResponse = undefined> {
 
 /**
  * SuccessReponse
- * @typedef {object} SuccessReponse
+ * @typedef {object} SuccessResponse
  * @property {boolean} success.required - success
  * @property {number} statusCode - statusCode
  */

@@ -1,4 +1,5 @@
 export const errorMessages = {
+	AccessDenied: "Access denied",
 	AnErrorOccurred: "An error occurred",
 	BadRequest: "Bad request",
 	IdRequired: "Id is required",
