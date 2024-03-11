@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import cookie from "cookie";
 import { SuccessReponse } from "../../../Common/BaseResponse";
 
-export const LogoutHandler = (req: Request, res: Response) => {
+export const LogoutHandler = (_req: Request, res: Response) => {
 	res.setHeader(
 		"Set-Cookie",
 		cookie.serialize("token", "", {

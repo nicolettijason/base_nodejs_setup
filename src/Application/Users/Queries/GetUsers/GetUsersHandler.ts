@@ -10,7 +10,7 @@ export const GetUsersHandler = async (
 	_req: Request,
 	res: Response<BaseResponse<GetUsersResponse[]>>
 ) => {
-	const query = await context<User>("Users").select(
+	const query = await context<User>(DatabaseTable.Users).select(
 		"Id",
 		"Email",
 		"FirstName",
