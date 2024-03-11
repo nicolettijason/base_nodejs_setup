@@ -10,7 +10,6 @@ const app = express();
 const port = envProperties.PORT_DEFAULT;
 
 if (!port) {
-	// check if port is defined
 	console.log("No PORT_DEFAULT in .env file");
 	process.exit(1);
 }

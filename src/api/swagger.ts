@@ -1,6 +1,5 @@
 import expressSwagger from "express-jsdoc-swagger";
-import e, { Express } from "express";
-import { configDotenv } from "dotenv";
+import { Express } from "express";
 import { envProperties } from "../helpers";
 
 const options = {

@@ -7,14 +7,18 @@ import { User } from "../../../../models/Entities";
 import { errorMessages } from "../../../../utils/constants/errorMessages";
 import { context } from "../../../../Infrastructure/dbContext";
 import { DatabaseTable } from "../../../../models/Enums/DatabaseTable";
+import { JwtService } from "../../../../Infrastructure/jwt.service";
 
 export const CreateCategoryHandler = async (
 	req: Request<{}, {}, CreateCategoryRequest>,
 	res: Response<SuccessReponse<undefined> | ErrorResponse>
 ) => {
-	const user = req.body.userId
+	const currentUser = JwtService.getTokenDatas(req.headers.cookie);
+	console.log(currentUser);
+	const user = currentUser
 		? await context<User>(DatabaseTable.Users)
-				.where("Id", req.body.userId)
+				.where("Id", currentUser.id)
+				.select("Id")
 				.first()
 		: null;
 
@@ -29,7 +33,7 @@ export const CreateCategoryHandler = async (
 		.insert({
 			IsPublic: req.body.isPublic,
 			Name: req.body.name,
-			UserId: req.body.userId,
+			UserId: user.Id,
 			CreatedAt: new Date(),
 			ModifiedAt: new Date(),
 		})

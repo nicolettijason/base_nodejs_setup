@@ -3,14 +3,14 @@ import { context } from "../../../../Infrastructure/dbContext";
 import { User } from "../../../../models/Entities";
 import { StatusCodes } from "http-status-codes";
 import { BaseResponse, SuccessReponse } from "../../../Common/BaseResponse";
-import { GetUsersResponse } from "./GetUserResponse";
+import { GetUsersResponse } from "./GetUsersResponse";
 import { DatabaseTable } from "../../../../models/Enums/DatabaseTable";
 
 export const GetUsersHandler = async (
 	_req: Request,
 	res: Response<BaseResponse<GetUsersResponse[]>>
 ) => {
-	const query = await context<User>(DatabaseTable.Users).select(
+	const query = await context<User>("Users").select(
 		"Id",
 		"Email",
 		"FirstName",

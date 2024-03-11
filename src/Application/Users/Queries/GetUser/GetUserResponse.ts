@@ -12,7 +12,6 @@
  * @property {GetUser} result - result
  */
 
-
 export interface GetUserResponse {
 	id: number;
 	name: string;

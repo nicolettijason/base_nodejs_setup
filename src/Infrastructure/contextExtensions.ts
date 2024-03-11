@@ -22,6 +22,7 @@ export class queryBuilderExtension<T extends BaseEntity> {
 				query.orWhere(key, filters[key]);
 			}
 		});
+		return query.first();
 	}
 
 	search(keyword: string, ...columns: (keyof T)[]) {

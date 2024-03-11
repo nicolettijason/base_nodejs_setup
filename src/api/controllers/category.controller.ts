@@ -23,7 +23,6 @@ export const categoryRouter = Router().use(
  * "userId": 1
  * }
  */
-
 categoryRouter.post("/", CreateCategoryRequestValidator, CreateCategoryHandler);
 
 /**

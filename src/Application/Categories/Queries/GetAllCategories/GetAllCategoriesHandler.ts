@@ -10,10 +10,14 @@ export const GetAllCategoriesHandler = async (
 	_req: Request,
 	res: Response<SuccessReponse<GetAllCategoriesResponse[]>>
 ) => {
-	const categories: (User & Category)[] = await context<Category>(DatabaseTable.Categories)
-		.leftJoin<User>("Users", "Users.Id", "Categories.UserId")
-		.select(
-			"Categories.Id",
+	const categories = await context<Category>(DatabaseTable.Categories)
+		.leftJoin<User>(
+			DatabaseTable.Users,
+			`${DatabaseTable.Categories}.UserId`,
+			`${DatabaseTable.Users}.Id`
+		)
+		.select<(User & Category)[]>(
+			`${DatabaseTable.Categories}.Id`,
 			"Name",
 			"IsPublic",
 			"UserId",

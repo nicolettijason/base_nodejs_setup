@@ -7,9 +7,5 @@ export const CreateCategoryRequestValidator =
 		{
 			validation: (req) => req.name.length > 0,
 			message: errorMessages.required.Name,
-		},
-		{
-			validation: (req) => req.userId > 0,
-			message: errorMessages.InvalidId,
 		}
 	);

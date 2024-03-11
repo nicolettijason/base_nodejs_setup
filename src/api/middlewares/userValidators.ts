@@ -10,12 +10,8 @@ export const acceptRole = (...roles: UserRoles[]) => {
 	return (req: Request<{}, {}, {}>, res: Response, next: NextFunction) => {
 		if (!roles.length) return next();
 
-		const token: string | undefined = cookie.parse(
-			req.headers.cookie || ""
-		).token;
-
-		JwtService.verifyToken(
-			token,
+		JwtService.getTokenDatas(
+			req.headers.cookie,
 			() => unauthorized(res),
 			(data) => roles.includes(data.role)
 		) && next();
