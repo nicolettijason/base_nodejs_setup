@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { envProperties } from "../helpers";
+import { envProperties } from "../utils/constants/properties";
 import { ITokenDatas } from "../models/interfaces/tokenDatas.interface";
 import { UserRoles } from "../models/Enums/UserRoles";
 import cookie from "cookie";

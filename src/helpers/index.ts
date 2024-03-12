@@ -1,12 +1,4 @@
-import { configDotenv } from "dotenv";
-import { IEnvProperties } from "../models/interfaces";
-
-configDotenv();
-
-export const envProperties: IEnvProperties = {
-	...process.env,
-	PORT_DEFAULT: parseInt(process.env.PORT_DEFAULT as string, 10),
-} as IEnvProperties;
+import { envProperties } from "../utils/constants/properties";
 
 export const logServer = (port: number) => {
 	const serverMessage = `Server is running: [http://localhost:${port}]`;

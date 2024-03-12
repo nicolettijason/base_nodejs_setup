@@ -1,4 +1,4 @@
-import { envProperties } from "../helpers";
+import { envProperties } from "../utils/constants/properties";
 import { knex } from "knex";
 import { DatabaseTable } from "../models/Enums/DatabaseTable";
 import { BaseEntity } from "../models/Entities";

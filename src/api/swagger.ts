@@ -1,6 +1,6 @@
 import expressSwagger from "express-jsdoc-swagger";
 import { Express } from "express";
-import { envProperties } from "../helpers";
+import { envProperties } from "../utils/constants/properties";
 
 const options = {
 	info: {

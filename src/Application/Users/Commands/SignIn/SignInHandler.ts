@@ -1,6 +1,5 @@
 import { StatusCodes } from "http-status-codes";
 import { context } from "../../../../Infrastructure/dbContext";
-import { envProperties } from "../../../../helpers";
 import { User } from "../../../../models/Entities";
 import {
 	BaseResponse,
