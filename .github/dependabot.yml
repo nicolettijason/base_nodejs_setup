@@ -1,0 +1,13 @@
+# .github/dependabot.yml
+# Dependabot configuration for automatic dependency updates
+# Documentation: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: "npm"   # Écosystème de packages : npm pour Node.js
+    directory: "/"             # Répertoire contenant le fichier package.json
+    schedule:
+      interval: "weekly"       # Vérifie les mises à jour chaque semaine
+    commit-message:
+      prefix: "chore"          # Préfixe du message de commit généré par Dependabot
+    open-pull-requests-limit: 20  # Limite le nombre de PR ouvertes
